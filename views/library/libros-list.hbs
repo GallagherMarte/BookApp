@@ -1,0 +1,55 @@
+<main>
+
+  <section class="py-2 text-center container">
+    <div class="row py-lg-2">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Library</h1>
+        <p class="lead text-body-secondary">...</p>
+        <p>
+          <a href="/Create-libros" id="Libros-C" class="btn btn-primary my-2">crea un Libros </a>
+          
+        </p>  
+      </div>
+    </div>
+  </section>
+
+  {{#if hasLibros}}
+
+
+   <div class="album py-5 bg-body-tertiary border border-danger rounded-4 shadow-lg">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+        {{#each Libros as |poke|}}
+        <div class="col">
+          <div class="card shadow-sm border-danger rounded-4" style="background-color: #151313;">
+            <!-- Imagen del Pokémon -->
+            <img src="{{poke.imagenLibro}}" class="card-img-top border-bottom border-dark"
+              style="height: 225px; object-fit: cover;" alt="Pokemon Image">
+            <div class="card-body text-light">
+              <h5 class="card-title text-center border-bottom pb-2"> {{poke.Titulo}} </h5>
+              <p class="card-text"><strong>Publicacion:</strong> {{poke.AñoPublicacion}} </p>
+              <p class="card-text"><strong>Categoria:</strong> {{poke.Categoria}} </p>
+              <p class="card-text"><strong>Autor:</strong> {{poke.Autor}} </p>
+              <p class="card-text"><strong>Editorial:</strong> {{poke.Editorial}} </p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <a name="Libros-e-{{poke.Id}}" href="/edit-Libros/{{poke.Id}}?edit=true"  class="btn btn-sm btn-outline-warning me-1"> Editar </a>
+                <form class="form-inline" method="post" action="/delete-Libros">
+                  <input type="hidden" name="LibrosId" value="{{poke.Id}}">
+                  <button type="submit" id="Libros-D-{{poke.Id}}" class="btn btn-sm btn-outline-danger delete-P">eliminar</button>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+ {{else}} 
+<h1>No hey libros</h1>
+ {{/if}}
+
+
+
+</main>

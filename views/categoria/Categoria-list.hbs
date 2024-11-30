@@ -1,0 +1,49 @@
+<main>
+  <!-- Encabezado principal con el título y descripción -->
+  <section class="py-2 text-center container">
+    <div class="row py-lg-2">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Álbum de Categorias</h1>
+        <p class="lead text-muted">...</p>
+        <p>
+          <a href="/Create-Categoria" id="catecoria-C" class="btn btn-primary my-2">Crear una Categorias</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {{#if hasLibros}}
+   <div class="album py-4 bg-tertiary border border-danger rounded-4 shadow-lg">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+      {{#each Categoria as |poke|}}
+      <div class="col">
+        <div class="card shadow-sm border-light rounded-4 bg-dark text-white">
+          <div class="card-header text-white bg-danger text-center">
+            <!-- Título de la región -->
+            <h5 class="card-title fw-bold">{{poke.Nombre}}</h5>
+          </div>
+          <div class="card-body">
+            <!-- Descripción de la región -->
+            <p class="card-text"><strong>Descripción:</strong> {{poke.Descripcion}}</p>
+
+            <!-- Botones de acción -->
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <a href="/edit-Categoria/{{poke.Id}}?edit=true" id="catecoria-e-{{poke.Id}}" class="btn btn-sm btn-outline-light">Editar</a>
+              <form class="form-inline" method="post" action="/delete-Categoria">
+                <input type="hidden" name="CategoriaID" value="{{poke.Id}}">
+                <button type="submit" id="catecoria-D-{{poke.Id}}" class="btn btn-sm btn-outline-danger delete-P">Eliminar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+{{else}} 
+<h1>No hey Categoria</h1>
+ {{/if}}
+
+</main>

@@ -1,0 +1,52 @@
+<main>
+  <!-- Encabezado principal con el título y descripción -->
+  <section class="py-2 text-center container">
+    <div class="row py-lg-2">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Álbum de Author</h1>
+        <p class="lead text-muted">...</p>
+        <p>
+          <a href="/Create-Autor" id="Autor-C" class="btn btn-primary my-2">Crear un Author</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {{#if hasLibros}}
+  <div class="album py-4 bg-tertiary border border-danger rounded-4 shadow-lg">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        {{#each Autor as |poke|}}
+        <div class="col">
+          <div class="card shadow-sm border-light rounded-4 bg-dark text-white">
+            <div class="card-header text-white bg-danger text-center">
+
+              <h5 class="card-title fw-bold">{{poke.Nombre}}</h5>
+            </div>
+            <div class="card-body">
+
+              <h6 class="card-text"><strong>Correo:</strong> {{poke.Correo}}</h6>
+              <h6 class="card-text"><strong>Libros Asociados:</strong> {{poke.totalLibros}}</h6>
+
+
+              <!-- Botones de acción -->
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <a href="/edit-Autor/{{poke.Id}}?edit=true" id="Autor-e-{{poke.Id}}" class="btn btn-sm btn-outline-light">Editar</a>
+                <form class="form-inline" method="post" action="/delete-Autor">
+                  <input type="hidden" name="AutorId" value="{{poke.Id}}">
+                  <button type="submit" id="Autor-D-{{poke.Id}}" class="btn btn-sm btn-outline-danger delete-P">Eliminar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+  {{else}}
+  <h1>No hey Autor</h1>
+  {{/if}}
+
+</main>

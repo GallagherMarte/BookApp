@@ -1,0 +1,58 @@
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                {{#if editMode}}edicion editorial {{else}} Crear editorial{{/if}}
+            </div>
+            <div class="card-body">
+
+                <form method="post" action="{{#if editMode}}/edit-Editorial{{else}}/Create-Editorial{{/if}}">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre editorial</label>
+                        <input type="text" name="Nombre" class="form-control"  placeholder="Nombre" id="name" aria-describedby="Name"
+                            value="{{#if editMode}}{{editoriales.Nombre}}{{/if}}" required>
+
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Telefono</span>
+                        <input type="tel" class="form-control" name="Telefono" placeholder="Telefono" aria-label="Username"
+                            aria-describedby="basic-addon1" value="{{#if editMode}}{{editoriales.Telefono}}{{/if}}" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Paiz</span>
+                        <input type="text" class="form-control" name="pais" placeholder="paiz" aria-label="Username"
+                            aria-describedby="basic-addon1"value="{{#if editMode}}{{editoriales.Pais}}{{/if}}" required>
+                    </div>
+
+
+
+                    {{#if editMode}}
+
+                    <input type="hidden" name="EditorialId" value="{{editoriales.Id}}">
+
+                    {{/if}}
+
+                    <button type="submit" id="Crear-editar" class="btn btn-primary">{{#if editMode}}editar {{else}} Crear {{/if}}</button>
+                    <a href="/Editorial-list" id="Atras-btn" type="submit" class="btn btn-danger">Atras</a>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+        <div class="card border-0">
+            <div class="card-body text-center">
+                <!-- Mostrar la imagen del Pokémon si está en modo de edición -->
+
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiiaQ7sWyD_ogOzpwL9flDyRJU9bEkbLCjTIPRQGIlRp92Ex24tX2L0h8B-9586DX-V2yuMdatzeQVsBjK57ljN7XJtA3esFsmkxKjjsqS_EHJHj8g8Svumv_cgfQm6216rXGLWL4eE8GU/s1600/3ditorial.jpg" alt="Imagen Pokémon"
+                    class="img-fluid rounded-4 shadow-lg">
+
+            </div>
+        </div>
+    </div>
+
+</div>

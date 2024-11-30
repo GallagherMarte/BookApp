@@ -1,0 +1,56 @@
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                {{#if editMode}}edicion autor {{else}} Crear author{{/if}}
+            </div>
+            <div class="card-body">
+
+                <form method="post" action="{{#if editMode}}/edit-Autor{{else}}/Create-Autor{{/if}}">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre </label>
+                        <input type="text" name="Nombre" class="form-control" id="name" aria-describedby="Name"
+                            value="{{#if editMode}}{{Autor.Nombre}}{{/if}}" required>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Correo</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                            <input type="email" class="form-control" name="Correo" placeholder="Username" aria-label="Username"
+                                aria-describedby="basic-addon1" value="{{#if editMode}}{{Autor.Correo}}{{/if}}" required >
+                        </div>
+                    </div>
+
+
+
+                    {{#if editMode}}
+
+                    <input type="hidden" name="AutorId" value="{{Autor.Id}}">
+
+                    {{/if}}
+
+                    <button type="submit" id="Crear-editar" class="btn btn-primary">{{#if editMode}}editar {{else}} Crear {{/if}}</button>
+                    <a href="/Autor-list" id="Atras-btn" type="submit" class="btn btn-danger">Atras</a>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+        <div class="card border-0">
+            <div class="card-body text-center">
+                <!-- Mostrar la imagen del Pokémon si está en modo de edición -->
+
+                <img src="https://media.istockphoto.com/id/1258141369/es/vector/elegante-pluma-estilogr%C3%A1fica-e-icono-de-libro-logotipo-del-autor-del-libro-tienda-de-libros.jpg?s=612x612&w=0&k=20&c=7ZDsPt3SJQVbF1uA3pXaHfCqLvc5NLh_lGoYyU9RSmA=" alt="Imagen Pokémon"
+                    class="img-fluid rounded-4 shadow-lg">
+
+            </div>
+        </div>
+    </div>
+
+</div>

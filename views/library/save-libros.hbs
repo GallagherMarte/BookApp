@@ -1,0 +1,113 @@
+{{#if hascategorias}}
+{{#if hasAutor}}
+{{#if hasEditorial}}
+<div class="row">
+
+
+
+
+    <!-- Columna para la imagen -->
+    <div class="col-md-4">
+        <div class="card border-0">
+            <div class="card-body text-center">
+                <!-- Mostrar la imagen del Pokémon si está en modo de edición -->
+                {{#if editMode}}
+                <img src="{{Libros.imagenLibro}}" alt="Imagen de {{Libros.Titulo}}"
+                    class="img-fluid rounded-4 shadow-lg">
+                {{else}}
+                <img src="https://w.wallhaven.cc/full/p2/wallhaven-p22e6j.jpg" alt="Imagen Pokémon"
+                    class="img-fluid rounded-4 shadow-lg">
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+    <!-- Columna para el formulario -->
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                {{#if editMode}}Edición Libros {{else}} Crear Libro{{/if}}
+            </div>
+            <div class="card-body">
+
+                <form enctype="multipart/form-data" method="post"
+                    action="{{#if editMode}}/edit-Libros{{else}}/Create-libros{{/if}}">
+                    <div class="mb-3">
+                        <label for="Titulo" class="form-label">Titulo </label>
+                        <input type="text" name="Titulo" class="form-control" id="Titulo" aria-describedby="Titulo"
+                            value="{{#if editMode}}{{Libros.Titulo}}{{/if}}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="año" class="form-label">año</label>
+                        <input type="number" name="anoPublic" class="form-control" id="año" aria-describedby="año"
+                            min="1000" max="9999" value="{{#if editMode}}{{Libros.AñoPublicacion}}{{else}}{{/if}}"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Seleciona portada</label>
+                        <input class="form-control" name="Imagen" type="file" id="imagen" {{#if
+                            editMode}}{{else}}required{{/if}}>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="Categoris">Categoris</label>
+                        <select class="form-select" name="Categoris" aria-label="Default select example" required>
+                            <option {{#if editMode}}value="{{Libros.Categoria}}" {{else}} {{/if}}>{{#if
+                                editMode}}{{Libros.Categoria}}{{else}}Elige una Categorias {{/if}}</option>
+                            {{#each Categoria as |R|}}
+                            <option value="{{R.Nombre}}">{{R.Nombre}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="authores">authores</label>
+                        <select class="form-select" name="authores" aria-label="Default select example" required>
+                            <option {{#if editMode}}value="{{Libros.Autor}}" {{else}} {{/if}}>{{#if
+                                editMode}}{{Libros.Autor}}{{else}}Elige un Author {{/if}}</option>
+                            {{#each autor as |T|}}
+                            <option value="{{T.Id}}">{{T.Nombre}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="editorial">editorial</label>
+                        <select class="form-select" name="editorial" aria-label="Default select example" required>
+                            <option {{#if editMode}}value="{{Libros.Editorial}}" {{else}} {{/if}}>{{#if
+                                editMode}}{{Libros.Editorial}}{{else}}Elige un editorial {{/if}}</option>
+                            {{#each editorial as |T|}}
+                            <option value="{{T.Nombre}}">{{T.Nombre}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+
+
+
+
+                    {{#if editMode}}
+                    <input type="hidden" name="LibrosId" value="{{Libros.Id}}">
+                    {{/if}}
+
+                    <button type="submit" name="Crear-editar" class="btn btn-primary">{{#if editMode}}Editar {{else}} Crear {{/if}}</button>
+                    <a href="/Libros-list" name="Atras-btn" type="submit"  class="btn btn-danger">Atrás</a>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+  {{else}}
+      <h1>Falta una categoria o una editorial o un autor</h1>
+      <h5>por Favor clic <a href="/">Home</a></h5>
+    {{/if}}
+          {{else}}
+    <h1>Crea un autor</h1>
+        {{/if}}
+                {{else}}
+  <h1>Crea una editorial</h1>
+                {{/if}}

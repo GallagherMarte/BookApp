@@ -1,0 +1,30 @@
+<div class="album py-5 bg-body-tertiary border border-danger rounded-4 shadow-lg">
+  <div class="container">
+    <div class="row justify-content-center">
+      {{#each libros as |libro|}}
+      <div class="col-md-8">
+        <div class="card shadow-sm border-danger rounded-4" style="background-color: #151313;">
+          <div class="d-flex">
+            <!-- Imagen del libro a la izquierda -->
+            <div class="flex-shrink-0">
+              <img src="{{libro.imagenLibro}}" class="card-img-start border-end border-dark"
+                style="height: 400px; width: 250px; object-fit: cover;" alt="{{libro.Titulo}}">
+            </div>
+            <!-- Detalles del libro a la derecha -->
+            <div class="card-body text-light ms-3" style="flex-grow: 1;">
+              <h5 class="card-title text-center border-bottom pb-2">{{libro.Titulo}}</h5>
+              <p class="card-text"><strong>Publicación:</strong> {{libro.AñoPublicacion}}</p>
+              <p class="card-text"><strong>Categoría:</strong> {{libro.Categoria}}</p>
+              <p class="card-text"><strong>Autor:</strong> {{libro.Autor}}</p>
+              <p class="card-text"><strong>Editorial:</strong> {{libro.Editorial}}</p>
+              <div class="d-flex justify-content-start mt-3">
+                <a href="/" id="atras-{{libro.Id}}" class="btn btn-sm btn-outline-info">Volver al inicio</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
